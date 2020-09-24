@@ -9,34 +9,10 @@
             <run>
                 <include name="userAccounts.accountCreate"/>
                 <include name="userAccounts.accountLogin"/>
-                <include name="addCart.*"/>
-                <include name="checkout.*"/>
             </run>
         </groups>
         <classes>
             <class name="com.magento.UserAccounts"/>
-            <class name="com.magento.AddToCart"/>
-            <class name="com.magento.Checkout"/>
         </classes>
     </test>
-    <!--<test thread-count="5" name="Add to Cart">
-        <groups>
-            <run>
-                <exclude name="addCart.*"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="com.magento.AddToCart"/>
-        </classes>
-    </test>
-    <test thread-count="5" name="Checkout">
-        <groups>
-            <run>
-                <exclude name="checkout.*"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="com.magento.Checkout"/>
-        </classes>
-    </test>-->
 </suite>

@@ -2,15 +2,12 @@ package com.magento;
 
 import com.magento.extent_reports.ExtentReport;
 import com.magento.loggers.Loggers;
-import com.magento.pageModels.AccountModel;
 import com.magento.pageModels.LoginModel;
 import com.magento.pageModels.SignupModel;
 import com.magento.project_setup.TestNGBase;
 import com.magento.utilities.ExcelUtils;
 import com.magento.utilities.Property;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 

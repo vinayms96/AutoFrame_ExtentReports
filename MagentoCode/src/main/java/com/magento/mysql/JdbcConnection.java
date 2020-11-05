@@ -46,7 +46,7 @@ public class JdbcConnection {
 
             /*If above database is not present then Creating Sample Data*/
             Loggers.getLogger().info("Database not found!\n Creating Sample Database...");
-            DatabaseSampleData.createDatabase(JDBC_DRIVER, NO_DATABASE_URL, USERNAME, PASSWORD);
+            CreateSampleDatabase.createDatabase(JDBC_DRIVER, NO_DATABASE_URL, USERNAME, PASSWORD);
 
         }
     }

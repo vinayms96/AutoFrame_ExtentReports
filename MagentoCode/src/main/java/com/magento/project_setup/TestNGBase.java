@@ -4,8 +4,9 @@ import com.magento.extent_reports.ExtentReport;
 import com.magento.interfaces.Constants;
 import com.magento.loggers.Loggers;
 import com.magento.mail.SMTPMail;
-import com.magento.mysql.DatabaseSampleData;
+import com.magento.mysql.CustomerData;
 import com.magento.mysql.JdbcConnection;
+import com.magento.mysql.WebsiteData;
 import com.magento.utilities.ExcelUtils;
 import com.magento.utilities.Property;
 import org.testng.annotations.AfterClass;
@@ -27,7 +28,7 @@ public class TestNGBase extends Initialize implements Constants {
         ExtentReport.extentReport();
 
         // Configuring the Excel Data
-        ExcelUtils.excelConfigure(EXCEL_TEST_PATH);
+        ExcelUtils.excelConfigure(CUSTOMER_SAMPLE_DATA);
 
         // Configuring the Database Connection
         JdbcConnection.establishConnection();
@@ -36,15 +37,10 @@ public class TestNGBase extends Initialize implements Constants {
         String property = Property.getProperty("updateData");
 
         switch (property) {
-            case "table":
-                // Creating the table and data
-                DatabaseSampleData.createTable();
-                break;
             case "update":
                 // Updating the table and data
-                ExcelUtils.excelConfigure(EXCEL_UPDATE_PATH);
-                DatabaseSampleData.updateTable();
-                ExcelUtils.excelConfigure(EXCEL_TEST_PATH);
+                CustomerData.updateCustomerData();
+                WebsiteData.updateWebsiteData();
                 break;
             default:
                 break;

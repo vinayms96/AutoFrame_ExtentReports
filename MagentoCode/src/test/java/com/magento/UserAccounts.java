@@ -35,13 +35,13 @@ public class UserAccounts extends TestNGBase {
     public void accountCreate() {
         // PageModel object
         SignupModel signupModel = new SignupModel(driver);
-        AccountModel accountModel = new AccountModel(driver);
+//        AccountModel accountModel = new AccountModel(driver);
         LoginModel loginModel = new LoginModel(driver);
 
         signupModel.clickCreateAccountLink(driver);
         signupModel.fillCustomerForm(driver);
 
-        accountModel.accountCreateVerify();
+//        accountModel.accountCreateVerify();
 
         if (loginModel.verifyLogin() == true) {
             driver.get(Property.getProperty("url") + "/customer/account/logout/");

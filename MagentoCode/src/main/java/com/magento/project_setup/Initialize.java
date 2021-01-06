@@ -11,27 +11,25 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 
 public class Initialize {
-    public WebDriver driver = null;
-    private DesiredCapabilities capabilities;
-    private ChromeOptions ch_options;
-    private FirefoxOptions ff_options;
+    public static WebDriver driver = null;
+    private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
 
     /**
      * Invoke the Browser specified as System Argument (Chrome or Firefox)
      * Also selecting Browser Modes (Headless or not)
      * off -> Headless
      */
-    public WebDriver initializeDriver() {
+    public static WebDriver initializeDriver() {
 
         // Setting Browser Capabilities
-        capabilities = new DesiredCapabilities();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setAcceptInsecureCerts(true);
 
         // Setting Browser Options
-        ch_options = new ChromeOptions();
+        ChromeOptions ch_options = new ChromeOptions();
         ch_options.merge(capabilities);
 
-        ff_options = new FirefoxOptions();
+        FirefoxOptions ff_options = new FirefoxOptions();
         ff_options.merge(capabilities);
 
         // Setting Browser Mode
@@ -53,12 +51,15 @@ public class Initialize {
             Loggers.getLogger().info("Firefox browser is Launched");
         }
 
+        // Setting the webdriver instance
+        driverThreadLocal.set(driver);
+
         // Hitting the URL and Maximizing the window
-        driver.manage().window().maximize();
-        driver.get(Property.getProperty("url"));
+        getDriver().manage().window().maximize();
+        getDriver().get(Property.getProperty("url"));
 
         try {
-            Assert.assertEquals(driver.getTitle(), "Home Page");
+            Assert.assertEquals(getDriver().getTitle(), "Home Page");
             Loggers.getLogger().info("Website Url is hit");
         } catch (Exception e) {
             Loggers.getLogger().error("Could not launch the website");
@@ -66,4 +67,10 @@ public class Initialize {
         return driver;
     }
 
+    /**
+     * @return - Webdriver
+     */
+    public static WebDriver getDriver() {
+        return driverThreadLocal.get();
+    }
 }

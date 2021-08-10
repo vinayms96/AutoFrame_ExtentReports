@@ -2,6 +2,7 @@ package com.magento.project_setup;
 
 import com.magento.loggers.Loggers;
 import com.magento.utilities.Property;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -42,13 +43,13 @@ public class Initialize {
 
         // Selecting the Browser
         if (Property.getProperty("browser").equalsIgnoreCase("Chrome")) {
-//            WebDriverManager.chromedriver().setup();
-            System.setProperty("webdriver.chrome.driver", "./../magento_data/browser_drivers/chromedriver");
+            WebDriverManager.chromedriver().setup();
+//            System.setProperty("webdriver.chrome.driver", "./../magento_data/browser_drivers/chromedriver");
             driver = new ChromeDriver(ch_options);
             Loggers.getLogger().info("Chrome browser is Launched");
         } else if (Property.getProperty("browser").equalsIgnoreCase("Firefox")) {
-//            WebDriverManager.firefoxdriver().setup();
-            System.setProperty("webdriver.gecko.driver", "./../magento_data/browser_drivers/geckodriver");
+            WebDriverManager.firefoxdriver().setup();
+//            System.setProperty("webdriver.gecko.driver", "./../magento_data/browser_drivers/geckodriver");
             driver = new FirefoxDriver(ff_options);
             Loggers.getLogger().info("Firefox browser is Launched");
         }
@@ -58,7 +59,7 @@ public class Initialize {
         driver.get(Property.getProperty("url"));
 
         try {
-            Assert.assertEquals(driver.getTitle(), "Home Page");
+            Assert.assertEquals(driver.getTitle(), Property.getProperty("title"));
             Loggers.getLogger().info("Website Url is hit");
         } catch (Exception e) {
             Loggers.getLogger().error("Could not launch the website");

@@ -1,0 +1,20 @@
+package com.magento.pageModels;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class HeaderModel {
+
+    @FindBy(css = "#search")
+    private WebElement searchBox;
+
+    public HeaderModel(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
+
+    public WebElement getSearchBox() {
+        return searchBox;
+    }
+}

@@ -31,7 +31,7 @@ public class Listener extends TestNGBase implements ITestListener {
         for (int er = 0; er < result.getThrowable().getStackTrace().length; er++) {
             Loggers.getLogger().error(result.getThrowable().getStackTrace()[er]);
         }
-        ExtentReport.getExtentNode().fail(result.getThrowable());
+        ExtentReport.getExtentTest().fail(result.getThrowable());
 
         // Take Screenshot when test fails
         try {

@@ -13,9 +13,6 @@ import org.testng.Assert;
 
 public class Initialize {
     public WebDriver driver = null;
-    private DesiredCapabilities capabilities;
-    private ChromeOptions ch_options;
-    private FirefoxOptions ff_options;
 
     /**
      * Invoke the Browser specified as System Argument (Chrome or Firefox)
@@ -25,14 +22,14 @@ public class Initialize {
     public WebDriver initializeDriver() {
 
         // Setting Browser Capabilities
-        capabilities = new DesiredCapabilities();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setAcceptInsecureCerts(true);
 
         // Setting Browser Options
-        ch_options = new ChromeOptions();
+        ChromeOptions ch_options = new ChromeOptions();
         ch_options.merge(capabilities);
 
-        ff_options = new FirefoxOptions();
+        FirefoxOptions ff_options = new FirefoxOptions();
         ff_options.merge(capabilities);
 
         // Setting Browser Mode

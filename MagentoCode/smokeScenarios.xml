@@ -4,19 +4,20 @@
     <listeners>
         <listener class-name="com.magento.listener.Listener"/>
     </listeners>
-    <test thread-count="5" name="SmokeTests" parallel="classes">
+    <test thread-count="5" name="SmokeTests">
         <groups>
             <run>
-                <exclude name="userAccounts.accountCreate"/>
-                <exclude name="userAccounts.accountLogin"/>
+                <include name="userAccounts.*"/>
+                <include name="productDetails.*"/>
                 <include name="addToCart.*"/>
-                <exclude name="checkout.*"/>
+                <include name="placeOrder.*"/>
             </run>
         </groups>
         <classes>
             <class name="com.magento.UserAccounts"/>
+            <class name="com.magento.ProductDetails"/>
             <class name="com.magento.AddToCart"/>
-            <!--<class name="com.magento.Checkout"/>-->
+            <class name="com.magento.PlaceOrder"/>
         </classes>
     </test>
 </suite>

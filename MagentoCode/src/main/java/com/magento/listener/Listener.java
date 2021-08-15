@@ -31,12 +31,13 @@ public class Listener extends TestNGBase implements ITestListener {
         for (int er = 0; er < result.getThrowable().getStackTrace().length; er++) {
             Loggers.getLogger().error(result.getThrowable().getStackTrace()[er]);
         }
-        ExtentReport.getExtentTest().fail(result.getThrowable());
+        ExtentReport.getExtentNode().fail(result.getThrowable());
 
         // Take Screenshot when test fails
         try {
             driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver")
                     .get(result.getInstance());
+
             ExtentReport.getExtentNode().fail(result.getTestName(), MediaEntityBuilder
                     .createScreenCaptureFromBase64String(Screenshot.getScreenshotBase64(driver)).build());
         } catch (Exception e) {

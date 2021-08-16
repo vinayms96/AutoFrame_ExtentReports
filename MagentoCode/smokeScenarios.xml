@@ -2,21 +2,22 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Smoke Tests">
     <listeners>
-        <listener class-name="com.magento.listener.Listener"></listener>
+        <listener class-name="com.magento.listener.Listener"/>
     </listeners>
-    <test thread-count="5" name="SmokeTests" parallel="classes">
+    <test thread-count="5" name="SmokeTests">
         <groups>
             <run>
-                <include name="userAccounts.accountCreate"/>
-                <include name="userAccounts.accountLogin"/>
-                <include name="addCart.*"/>
-                <include name="checkout.*"/>
+                <include name="userAccounts.*"/>
+                <include name="productDetails.*"/>
+                <include name="addToCart.*"/>
+                <include name="placeOrder.*"/>
             </run>
         </groups>
         <classes>
             <class name="com.magento.UserAccounts"/>
+            <class name="com.magento.ProductDetails"/>
             <class name="com.magento.AddToCart"/>
-            <class name="com.magento.Checkout"/>
+            <class name="com.magento.PlaceOrder"/>
         </classes>
     </test>
 </suite>

@@ -23,7 +23,7 @@
         <!-- report name - displayed at top-nav -->
         <reportName>Magento TestNG Report
             <![CDATA[
-                <img src="./../Logo/Report_Logo.png"/>
+                <img src="./../../magento_data/Logo/Report_Logo.png"/>
             ]]>
         </reportName>
 

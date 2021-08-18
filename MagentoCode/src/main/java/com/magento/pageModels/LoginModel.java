@@ -11,15 +11,15 @@ import java.util.concurrent.TimeUnit;
 public class LoginModel extends TestNGBase {
 
     @FindBy(xpath = "(//ul[@class='header links']/li/a)[1]")
-    private WebElement login_link;
+    private WebElement loginLink;
     @FindBy(xpath = "//div/input[@id='email']")
-    private WebElement email_id;
+    private WebElement emailId;
     @FindBy(xpath = "(//div/input[@id='pass'])[1]")
     private WebElement password;
     @FindBy(xpath = "(//div/button[@id='send2'])[1]")
     private WebElement submit;
     @FindBy(css = ".greet.welcome .logged-in")
-    private WebElement user_name;
+    private WebElement userName;
 
     /**
      * @param driver - Webdriver element
@@ -32,15 +32,15 @@ public class LoginModel extends TestNGBase {
     /**
      * @return WebElement - Login Link
      */
-    public WebElement getLogin_link() {
-        return login_link;
+    public WebElement getLoginLink() {
+        return loginLink;
     }
 
     /**
      * @return WebElement - Email Field
      */
-    public WebElement getEmail_id() {
-        return email_id;
+    public WebElement getEmailId() {
+        return emailId;
     }
 
     /**
@@ -60,8 +60,8 @@ public class LoginModel extends TestNGBase {
     /**
      * @return WebElement - Username field
      */
-    public WebElement getUser_name() {
-        return user_name;
+    public WebElement getUserName() {
+        return userName;
     }
 
 }

@@ -76,8 +76,8 @@ public class UserAccounts extends TestNGBase {
         // Verify if the account is created / not
         wait.until(ExpectedConditions.visibilityOf(signupModel.getMessages()));
         try {
-            wait.until(ExpectedConditions.visibilityOf(loginModel.getUser_name()));
-            Assert.assertTrue(loginModel.getUser_name().getText().contains(firstName + " " + lastName));
+            wait.until(ExpectedConditions.visibilityOf(loginModel.getUserName()));
+            Assert.assertTrue(loginModel.getUserName().getText().contains(firstName + " " + lastName));
             Loggers.getLogger().info("User Account Created Successfully");
             ExtentReport.getExtentNode().pass("User Account Created Successfully");
         } catch (Exception e) {
@@ -99,11 +99,11 @@ public class UserAccounts extends TestNGBase {
         LoginModel loginModel = new LoginModel(driver);
 
         // Click on Login link
-        wait.until(ExpectedConditions.elementToBeClickable(loginModel.getLogin_link()));
-        loginModel.getLogin_link().click();
+        wait.until(ExpectedConditions.elementToBeClickable(loginModel.getLoginLink()));
+        loginModel.getLoginLink().click();
 
         // Entering the form details
-        loginModel.getEmail_id().sendKeys(ExcelUtils.getDataMap().get("email_id"));
+        loginModel.getEmailId().sendKeys(ExcelUtils.getDataMap().get("email_id"));
         loginModel.getPassword().sendKeys(ExcelUtils.getDataMap().get("password"));
         Loggers.getLogger().info("Redirected to Login page");
         loginModel.getSubmit().click();
@@ -113,8 +113,8 @@ public class UserAccounts extends TestNGBase {
 
         // Verifying if user is logged in
         try {
-            fluent.until(ExpectedConditions.textToBePresentInElement(loginModel.getUser_name(), firstName));
-            Assert.assertTrue(loginModel.getUser_name().getText().contains(firstName + " " + lastName));
+            fluent.until(ExpectedConditions.textToBePresentInElement(loginModel.getUserName(), firstName));
+            Assert.assertTrue(loginModel.getUserName().getText().contains(firstName + " " + lastName));
             Loggers.getLogger().info("User logged in Successfully");
             ExtentReport.getExtentNode().pass("User logged in Successfully");
         } catch (Exception e) {

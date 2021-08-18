@@ -53,7 +53,7 @@ public class TestNGBase extends Initialize implements Constants {
      */
     @AfterClass(description = "Post Test configurations", alwaysRun = true)
     public void postTestRuns() {
-        driver.quit();
+        getDriver().quit();
         Loggers.getLogger().info("Browser is closed");
     }
 

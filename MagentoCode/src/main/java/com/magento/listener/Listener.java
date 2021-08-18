@@ -37,6 +37,7 @@ public class Listener extends TestNGBase implements ITestListener {
         try {
             driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver")
                     .get(result.getInstance());
+
             ExtentReport.getExtentNode().fail(result.getTestName(), MediaEntityBuilder
                     .createScreenCaptureFromBase64String(Screenshot.getScreenshotBase64(driver)).build());
         } catch (Exception e) {

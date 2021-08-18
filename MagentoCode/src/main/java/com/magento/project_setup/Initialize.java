@@ -2,6 +2,7 @@ package com.magento.project_setup;
 
 import com.magento.loggers.Loggers;
 import com.magento.utilities.Property;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -11,15 +12,14 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 
 public class Initialize {
-    public static WebDriver driver = null;
-    private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
+    public WebDriver driver = null;
 
     /**
      * Invoke the Browser specified as System Argument (Chrome or Firefox)
      * Also selecting Browser Modes (Headless or not)
      * off -> Headless
      */
-    public static WebDriver initializeDriver() {
+    public WebDriver initializeDriver() {
 
         // Setting Browser Capabilities
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -40,26 +40,23 @@ public class Initialize {
 
         // Selecting the Browser
         if (Property.getProperty("browser").equalsIgnoreCase("Chrome")) {
-//            WebDriverManager.chromedriver().setup();
-            System.setProperty("webdriver.chrome.driver", "./../magento_data/browser_drivers/chromedriver");
+            WebDriverManager.chromedriver().setup();
+//            System.setProperty("webdriver.chrome.driver", "./../magento_data/browser_drivers/chromedriver");
             driver = new ChromeDriver(ch_options);
             Loggers.getLogger().info("Chrome browser is Launched");
         } else if (Property.getProperty("browser").equalsIgnoreCase("Firefox")) {
-//            WebDriverManager.firefoxdriver().setup();
-            System.setProperty("webdriver.gecko.driver", "./../magento_data/browser_drivers/geckodriver");
+            WebDriverManager.firefoxdriver().setup();
+//            System.setProperty("webdriver.gecko.driver", "./../magento_data/browser_drivers/geckodriver");
             driver = new FirefoxDriver(ff_options);
             Loggers.getLogger().info("Firefox browser is Launched");
         }
 
-        // Setting the webdriver instance
-        driverThreadLocal.set(driver);
-
         // Hitting the URL and Maximizing the window
-        getDriver().manage().window().maximize();
-        getDriver().get(Property.getProperty("url"));
+        driver.manage().window().maximize();
+        driver.get(Property.getProperty("url"));
 
         try {
-            Assert.assertEquals(getDriver().getTitle(), "Home Page");
+            Assert.assertEquals(driver.getTitle(), Property.getProperty("title"));
             Loggers.getLogger().info("Website Url is hit");
         } catch (Exception e) {
             Loggers.getLogger().error("Could not launch the website");
@@ -67,10 +64,4 @@ public class Initialize {
         return driver;
     }
 
-    /**
-     * @return - Webdriver
-     */
-    public static WebDriver getDriver() {
-        return driverThreadLocal.get();
-    }
 }
